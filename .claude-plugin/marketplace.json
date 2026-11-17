@@ -1,0 +1,13 @@
+{
+  "name": "claude-mods",
+  "owner": {
+    "name": "lmarciales"
+  },
+  "plugins": [
+    {
+      "name": "crimson-gate",
+      "source": "./plugins/crimson-gate",
+      "description": "Gothic red backdrop and a session HUD for the Claude desktop app."
+    }
+  ]
+}

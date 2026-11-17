@@ -29,6 +29,13 @@ Commands:
 
 The backdrop and the graphic HUD draw in the Claude desktop app (Code tab) and the mobile app. A terminal shows the HUD as one line of text.
 
+### Privacy and performance
+
+- No network, no telemetry, no files read or written, no environment variables read. The mod has no dependencies: nothing to install beyond Claude Code.
+- Its only outside program is `git`, to show the branch and changes: two calls (`status` and `diff --shortstat`), which only read: no optional locks, no fsmonitor or untracked-cache helpers, no lazy fetch in a partial clone, no external diff or textconv programs, no prompts, submodules ignored, and a 2-second cap. Like any `git status` you run in that folder, git still follows the repository's own setup, such as a Git LFS filter the repository defines. They run when a session starts (after it is up), when the working folder changes, a moment after a tool that can change files, after each reply, and every 30 seconds, so a branch switched in another terminal shows up while idle. Reads never overlap.
+- It stores two choices: the backdrop on or off, and which HUD.
+- The backdrop is drawn once and never animates. The HUD is a static image, redrawn from live figures whenever one it shows changes: context, cost and plan limits as the app reports them, git as above, and the clock about once a minute while idle (every few seconds while Claude replies). An unchanged reading redraws nothing. Nothing the mod does runs before a tool call or a reply in a way that delays it.
+
 ### Install
 
 At the prompt of a terminal session:

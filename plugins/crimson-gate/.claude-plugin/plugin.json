@@ -1,6 +1,6 @@
 {
   "name": "crimson-gate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A static gothic red backdrop for the Claude desktop app, with a session HUD above the prompt: context, cost, last reply, cache, session and git.",
   "types": "./types/index.d.ts"
 }

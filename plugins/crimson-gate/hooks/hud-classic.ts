@@ -105,13 +105,9 @@ export function hudSvg(world: World, hud: Hud, isWorking: boolean, width = HUD_W
   const branch = hud.branch ? `⎇ ${hud.branch}` : ''
   const status = isWorking ? (s.caps ? '● WORKING' : '● working') : ''
 
-  const anim = s.glow
-    ? `.bar{animation:breathe 4.5s ease-in-out infinite}.b1{animation-delay:-1.1s}.b2{animation-delay:-2.2s}.dot{animation:blink 1.4s steps(2) infinite}@keyframes breathe{50%{opacity:.72}}@keyframes blink{50%{opacity:.25}}`
-    : `.dot{animation:blink 1.6s ease-in-out infinite}@keyframes blink{50%{opacity:.35}}`
-
+  // Static: an animated HUD would repaint the band on every frame, all day.
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${HUD_HEIGHT}" width="${w}" height="${HUD_HEIGHT}">`,
-    `<style>${anim}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>`,
     `<defs><filter id="glow" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`,
     `<linearGradient id="edge" x1="0" x2="1"><stop offset="0" stop-color="${s.edge}" stop-opacity=".9"/><stop offset=".5" stop-color="${s.accent2}" stop-opacity=".35"/><stop offset="1" stop-color="${s.edge}" stop-opacity=".9"/></linearGradient></defs>`,
     `<rect x="1" y="1" width="${w - 2}" height="${HUD_HEIGHT - 2}" rx="14" fill="${s.card}" fill-opacity="${s.cardOpacity}" stroke="url(#edge)" stroke-width="1.2"/>`,

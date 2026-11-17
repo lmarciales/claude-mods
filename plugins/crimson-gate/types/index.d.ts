@@ -37,8 +37,6 @@ export type Hud = {
   }
   lastReply?: { input: number; output: number; seconds: number; cost?: number; cache?: number }
   git?: { added?: number; removed?: number; files?: number; ahead?: number }
-  gitAt?: number
-  gitRefreshing?: boolean
   /** Milliseconds since the epoch at the last refresh, for the clock and countdowns. */
   now: number
 }
